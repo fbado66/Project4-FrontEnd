@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/*------------------- Header Component-----------------------------  */
+.header-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 7vw;
+  padding: 2%;
+}
+
+.headerSearch {
+  display: flex;
+  align-items: center;
+  
+}
+
+.userHolder {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+
+}
+
+/* -------------------Home Page Component-----------------------------  */
+
+.home-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg");
+  height: 80vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: justify;
+  text-shadow: .5px .5px white;  
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translate(-10%, -10%);
+  color: white;
+}
+
+.category-homepage {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+
+}
+
+ /* ---------------Category Component ----------------  */
+ .card-category {
+  width: 100%; 
+padding-left: 2px;
+padding-right: 2px; 
+}
