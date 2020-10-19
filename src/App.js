@@ -47,11 +47,15 @@ componentDidMount(){
 
     let arrayOfLinks = this.state.categories.map((categoryPojo) => {
       return (
-          <NavLink
+          <Link
           key = {categoryPojo.id}
           to = {`/category/${categoryPojo.id}`}>
-              {categoryPojo.title}
-          </NavLink>
+              {<div className = 'render-categroyCard'>
+                  <img className = 'category-image' src ={categoryPojo.image_url}/>
+                  <h1 className ='categoryCard-text'>{categoryPojo.title}</h1>
+                  <p className ='categoryCard-text' >{categoryPojo.content}</p>
+              </div>}
+          </Link>
       )
   })
 
@@ -59,20 +63,22 @@ componentDidMount(){
     <div className="App">    
       <SearchBar /> 
       <Header />
-        {/* <HomePage /> */}
-        <aside>
-          <ul>
-            {arrayOfLinks}
-          </ul>
-        </aside>
-
-        <main>
+        {/* <HomePage
+         taco = {this.renderSpecificCategory} /> */}
+         <main>
           <Switch>
             <Route path="/" exact component = {HomePage} />
             <Route path="/category/:id" render = {this.renderSpecificCategory} />
             <Route component = {NotFound} />
           </Switch>
         </main>
+        <aside>
+          <ul className = 'categoryCard-holder'>
+            {arrayOfLinks}
+          </ul>
+        </aside>
+
+        
     </div>
     );
   }

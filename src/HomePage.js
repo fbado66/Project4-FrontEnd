@@ -11,21 +11,17 @@ class HomePage extends Component {
     
     componentDidMount(){
         fetch("http://localhost:3000/categories")
-          .then(res => res.json())
-          .then((arrayOfCategories) => {
-            this.setState( {
-              categories: arrayOfCategories
+            .then(res => res.json())
+            .then((arrayOfCategories) => {
+                this.setState( {
+                categories: arrayOfCategories
+                })
             })
-          })
-      }
+    }
 
-      
-      
+
 
     render () {
-
-
-       
 
         return (
             <div>
@@ -37,16 +33,10 @@ class HomePage extends Component {
                     </div>
                 </div>
                 <div className = 'category-homepage'>
-                    
-    
-                    <CategoryList 
+                    {/* <CategoryList 
+                    taco = {this.props.taco}
                     categories = {this.state.categories} 
-                    />
-
-                    
-                    
-                    
-                     
+                    />      */}
                 </div>
     
             </div>

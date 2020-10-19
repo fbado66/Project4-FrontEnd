@@ -6,6 +6,7 @@ const CategoryList = (props) => {
     
     let arrayOfCategories = props.categories.map((category) => {
         return <Category 
+                url = {props.taco}
                 key = {category.id}
                 category = {category}
                 />

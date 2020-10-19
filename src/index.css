@@ -68,10 +68,35 @@ code {
  /* ---------------Category Component ----------------  */
  .card-category {
   align-items: center;
-  display: flex
+  display: flex;
+
+}
+
+.render-categroyCard {
+  align-items: center;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+.categoryCard-holder {
+  display: flex;
+}
+
+.category-image {
+  width: 90%;
+}
+
+.categoryCard-text {
+  text-decoration: none;
 }
 
 .singular-category {
   padding-left: 2px;
   padding-right: 2px;
+}
+
+/* ------------------CARD LISTINGS ------------------------------ */
+
+.card-listing {
+  
 }
