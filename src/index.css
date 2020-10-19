@@ -67,7 +67,11 @@ code {
 
  /* ---------------Category Component ----------------  */
  .card-category {
-  width: 100%; 
-padding-left: 2px;
-padding-right: 2px; 
+  align-items: center;
+  display: flex
+}
+
+.singular-category {
+  padding-left: 2px;
+  padding-right: 2px;
 }

@@ -1,19 +1,19 @@
 import React, {Component } from 'react'
-import Category from './Category'
+import CategoryList from './CategoryList'
 
 class HomePage extends Component {
 
     state = {
-        listings: []
+        categories: []
     }
     
     
     componentDidMount(){
-        fetch("http://localhost:3000/listings")
+        fetch("http://localhost:3000/categories")
           .then(res => res.json())
-          .then((arrayOfListings) => {
+          .then((arrayOfCategories) => {
             this.setState( {
-              listings: arrayOfListings
+              categories: arrayOfCategories
             })
           })
       }
@@ -32,9 +32,11 @@ class HomePage extends Component {
                 <div className = 'category-homepage'>
                   
                     
-                    <Category 
-                    listings = {this.state.listings} 
+                    <CategoryList 
+                    categories = {this.state.categories} 
                     />
+                    
+                    
                      
                 </div>
     
