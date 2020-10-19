@@ -1,6 +1,7 @@
 import React, {Component } from 'react'
 import CategoryList from './CategoryList'
 
+
 class HomePage extends Component {
 
     state = {
@@ -18,8 +19,14 @@ class HomePage extends Component {
           })
       }
 
+      
+      
+
     render () {
-        // console.log(this.state.listings)
+
+
+       
+
         return (
             <div>
                 <h1> Home Component</h1>
@@ -30,11 +37,13 @@ class HomePage extends Component {
                     </div>
                 </div>
                 <div className = 'category-homepage'>
-                  
                     
+    
                     <CategoryList 
                     categories = {this.state.categories} 
                     />
+
+                    
                     
                     
                      
