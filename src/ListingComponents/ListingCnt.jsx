@@ -13,7 +13,7 @@ export default class extends React.Component {
         })
 
         return (
-            <article>
+            <article className = 'render-all-listings'>
                 {arrayOfListings}
             </article>
         )

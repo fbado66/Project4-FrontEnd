@@ -1,5 +1,5 @@
 import React, {Component } from 'react'
-import CategoryList from './CategoryList'
+// import CategoryList from './CategoryList'
 
 
 class HomePage extends Component {

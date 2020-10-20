@@ -1,26 +1,12 @@
-import React from 'react'; 
-import ListingCard from './ListingCard'
+import React from 'react'
 
-export default class extends React.Component {
-    
-    render () {
-        let {listing} = this.props
-        // let arrayOfListings = listing.map((listing) => {
-            return (
-            <div>
-                <ListingCard 
-                    key = {listing.id}
-                    listing = {listing}
-                    />
-                </div>
-                )
-       
+const SingularListings = () => {
+    console.log('Hello from SingularListing')
+    return (
+        <div>
+        <p>Hello from Singular Listings</p>
+        </div>
+    )
+}
 
-    //     return (
-    //         <article>
-    //             {arrayOfListings}
-    //         </article>
-    //     )
-    // }
-}
-}
+export default SingularListings

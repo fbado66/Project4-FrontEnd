@@ -8,7 +8,7 @@ class Category extends Component {
         return (
             <div className ='singular-category'>
                 < img
-                src={image_url} />
+                src={image_url} alt='' />
                 <h1>{title}</h1>
                 <p>{content}</p>
             </div>
