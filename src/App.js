@@ -63,22 +63,21 @@ componentDidMount(){
     <div className="App">    
       <SearchBar /> 
       <Header />
-        {/* <HomePage
-         taco = {this.renderSpecificCategory} /> */}
-         <main>
+      
+        <main>
           <Switch>
             <Route path="/" exact component = {HomePage} />
             <Route path="/category/:id" render = {this.renderSpecificCategory} />
             <Route component = {NotFound} />
           </Switch>
         </main>
+
         <aside>
           <ul className = 'categoryCard-holder'>
             {arrayOfLinks}
           </ul>
-        </aside>
+        </aside>   
 
-        
     </div>
     );
   }

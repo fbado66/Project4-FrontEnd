@@ -1,28 +1,36 @@
-import React from 'react'
-import { Route, Switch, Link, NavLink } from 'react-router-dom'
+import React, {Component } from 'react';
 
+class Category extends Component {
 
-const Category = (props) => {
+    render () {
+      let  {title, content, image_url} = this.props.category
 
-
-    let handleClick = () => {
-                    //  <Route path="/category/:id" render = {this.renderSpecificCategory} /> 
-
-        // console.log(props.url) 
+        return (
+            <div className ='singular-category'>
+                < img
+                src={image_url} />
+                <h1>{title}</h1>
+                <p>{content}</p>
+            </div>
+        )
+        
     }
-    console.log(props.url)
-
-    let {title, content, image_url} = props.category
-
-    return (
-        <div className ='singular-category'>
-            < img
-            onClick = {handleClick} src={image_url} />
-            <h1>{title}</h1>
-            <p>{content}</p>
-        </div>
-    )
 }
 
-
 export default Category
+
+
+// const Category = (props) => {
+
+//     let {title, content, image_url} = props.category
+//     return (
+//         <div className ='singular-category'>
+//             < img
+//             src={image_url} />
+//             <h1>{title}</h1>
+//             <p>{content}</p>
+//         </div>
+//     )
+// }
+
+// export default Category

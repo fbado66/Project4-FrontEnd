@@ -6,26 +6,15 @@ export default class extends React.Component {
     render () {
         let {category} = this.props
         let arrayOfListings = category.listings.map((listing) => {
-           
             return <ListingPerCategory 
                     key = {listing.id}
                     listing = {listing}
                     />
-
         })
 
-       
-            
-    
-
-        
-        
         return (
             <article>
-               
-               {arrayOfListings}
-
-               
+                {arrayOfListings}
             </article>
         )
     }
