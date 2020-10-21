@@ -1,37 +1,34 @@
 import React, { Component } from 'react';
-import ReservationForm from './ReservationForm'
-
+import ReservationForm from './ReservationForm';
+import UserReservationContainer from './UserReservationContainer'
 class ProfileContainer extends Component {
 
   
 
   render() {
-    let {username, reservations} = this.props
-    let user_id = this.props.id 
-      
-    
-    let singleReservation = reservations.map((reservationPojo) => {
-      console.log(reservationPojo)
-
+    console.log('I AM FROM PROFILE ')
+    console.log(this.props)
+    let {id, username, reservations, token} = this.props
+          
+    let allReservations = reservations.map((reservationPojo) => {
+      return <UserReservationContainer
+              key ={reservationPojo.id}
+              reservation = {reservationPojo}
+              token = {token}
+            />
     })
 
-    
-    // let allSnacks = snacks.map(snackObj => {
-    //   return <Snack key={snackObj.id} snack={snackObj} />
-    // })
+    console.log('PROFILE COMPONENT')
     console.log(this.props)
-    return (
-      
-
+    return (      
       <div>
-        
-          <p>Hello world from the profile container</p>
-         <h2>{username}&apos;s Profile</h2>
-         <p>Reservation Container will go here </p>
+        <p>Hello world from the profile container</p>
+        <h2>{username}&apos;s Profile</h2>
+         {allReservations}
 
-        
-
-
+         
+         
+         
       </div>
     );
   }

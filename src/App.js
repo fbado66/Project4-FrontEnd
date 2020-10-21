@@ -2,7 +2,6 @@ import React, {Component } from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
 import HomePage from './HomePage'
-// import NavBar from './NavBar'
 import Header from "./Header"
 import LogInForm from './LogInForm'
 import RegisterForm from './RegisterForm'
@@ -14,7 +13,6 @@ import NotFound from './NotFound'
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 
-
 class App extends Component {
 
   state = {
@@ -22,11 +20,46 @@ class App extends Component {
     username: "",
     categories: [],
     reservations: [],
-    reviews: []
+    reviews: [],
+    token: ""
 }
- 
 
-  // ------- logging a user ------------------
+ // ----SETTING STATE FOR CATEGORIES AS WELL AS CHECKING ON USER IF LOGGED IN -----
+
+componentDidMount(){
+  fetch("http://localhost:3000/categories")
+      .then(res => res.json())
+      .then((arrayOfCategories) => {
+        this.setState( {
+          categories: arrayOfCategories
+        })
+      })
+
+    if(localStorage.token){
+        fetch("http://localhost:3000/users/keep_logged_in", {
+          method: "GET",
+          headers: {
+          "Authorization": localStorage.token
+          }
+        })
+        .then(res => res.json())
+        .then(this.helpHandleResponse)
+    }
+}
+
+
+handleLogOut = () => {
+  this.setState({
+    id: 0,
+    username: "",
+    reservations: [],
+    reviews: [],
+    token: ""
+  })
+  localStorage.clear()
+}
+
+// -------------LOGIN USER -----------------------
 
 handleLoginSubmit = (userInfo) => {
   console.log("Login form has been submitted")
@@ -42,26 +75,10 @@ handleLoginSubmit = (userInfo) => {
     })
   })
     .then(res => res.json())
-    .then((response) => {
-      if(response.error){
-        console.error(response.error)
-      } else {
-
-        this.setState({
-          id: response.id,
-          username: response.username,
-          reservations: response.reservations,
-          reviews: response.reviews
-          
-        })
-        this.props.history.push("/profile")
-      }
-    })
-
+    .then(this.helpHandleResponse)
 }
 
-
- // ------------- register a user --------------------------
+// ---------------- NEW USER -----------------------
 handleRegisterSubmit = (userInfo) => {
   console.log("Register form has been submitted")
 
@@ -78,29 +95,35 @@ handleRegisterSubmit = (userInfo) => {
       email: userInfo.email,
       phone: userInfo.phone,
       location: userInfo.location
-
     })
   })
   .then(res => res.json())
-  .then(resp => {
-    if(resp.error){
-      console.error(resp.error)
-    } else {
-
-      this.setState({
-        id: resp.id,
-        username: resp.username,
-        reservations: resp.reservations,
-        reviews: resp.reviews
-      })
-      this.props.history.push("/profile")
-    }
-  })
+  .then(this.helpHandleResponse)
 
 }
 
 
+helpHandleResponse = (resp) => {
+  if(resp.error){
+    console.error(resp.error)
+  } else {
+    localStorage.token = resp.token
+    this.setState({
+      id: resp.user.id,
+      username: resp.user.username,
+      reservations: resp.user.reservations,
+      reviews: resp.user.reviews,
+      token: resp.token
+    })
+    this.props.history.push("/profile")
+  }
+}
+
 renderForm = (routerProps) => {
+  if(this.state.token){
+    return <button onClick={this.handleLogOut}>Log Out</button>
+  }
+
   if(routerProps.location.pathname === "/login"){
     return <LogInForm
       formName="Login Form"
@@ -115,30 +138,23 @@ renderForm = (routerProps) => {
 }
 
 renderProfile = (routerProps) => {
-  if(this.state.id){
-    return <ProfileContainer 
-      username={this.state.username} 
-      reservations={this.state.reservations} 
-      reviews={this.state.reviews}
-      id={this.state.id}
-    />
+  if(this.state.token){
+    return <div>
+              <ProfileContainer 
+                username={this.state.username} 
+                reservations={this.state.reservations} 
+                reviews={this.state.reviews}
+                id={this.state.id}
+              />
+           </div> 
   } else {
     return <Redirect to="/login" />
   }
 
 }
 
-componentDidMount(){
-    fetch("http://localhost:3000/categories")
-      .then(res => res.json())
-      .then((arrayOfCategories) => {
-        this.setState( {
-          categories: arrayOfCategories
-        })
-      })
-  }
 
-  
+
   renderSpecificCategory = (routerProps) => {
     let givenUrl = routerProps.match.params.id 
     let foundCategory = this.state.categories.find((categoryPojo) => {
@@ -165,6 +181,7 @@ componentDidMount(){
         if (foundListing) { 
         return <SingularListing 
         listingPojo = {foundListing}
+        token = {this.state.token}
               />
         }
       } else {

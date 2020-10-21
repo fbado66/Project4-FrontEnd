@@ -3,19 +3,19 @@ import React, { Component } from 'react';
 class ReservationForm extends Component {
 
   state = {
-    user_id: '', 
-    listing_id: '',
-    check_in_date: '',
-    check_out_date: '',
-    guest_count: '',
+    user_id: "",
+    listing_id: this.props.listing.id,
+    check_in_date: "",
+    check_out_date: "",
+    guest_count: "",
   }
 
 
 
   // ----- handle Reservation Form  -----------------------
 
- handleReservationForm = (ReservationPojo) => {
-   ReservationPojo.preventDefault()
+ handleReservationForm = (evt) => {
+   evt.preventDefault()
 
 
   console.log("Reservation form has been submitted")
@@ -23,14 +23,14 @@ class ReservationForm extends Component {
   fetch("http://localhost:3000/reservations", {
     method: "POST",
     headers: {
-      "Content-Type": "Application/json"
+      "Content-Type": "Application/json",
+      "authorization": this.props.token
     },
     body: JSON.stringify({
-      user_id: ReservationPojo.user_id,
-      listing_id: ReservationPojo.listing_id,
-      check_in_date: ReservationPojo.check_in_date, 
-      check_out_date: ReservationPojo.check_out_date,
-      guest_count: ReservationPojo.guest_count
+      listing_id: this.state.listing_id,
+      check_in_date: this.state.check_in_date, 
+      check_out_date: this.state.check_out_date,
+      guest_count: this.state.guest_count
     })
   })
     .then(res => res.json())
@@ -40,30 +40,20 @@ class ReservationForm extends Component {
       } else {
 
         this.setState({
-          reservations: response.ReservationPojo,
+          reservations: response,
+          user_id: "",
+          listing_id: "",
+          check_in_date: "",
+          check_out_date: "",
+          guest_count: ""
+
         })
-        this.props.history.push("/profile")
+        
       }
     })
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-  
-  // handleReservation = (e) => {
-  //   e.preventDefault()
-  //   this.props.handleReservation(this.state)
-  // }
 
   handleChange = (e) => {
     let {name, value} = e.target
@@ -72,12 +62,14 @@ class ReservationForm extends Component {
     })
   }
 
+
   render() {
     let {formName} = this.props
     let {user_id, listing_id, check_in_date, check_out_date, guest_count} = this.state
 
-    console.log(this.props.listing_id)
-
+    console.log("RESERVATION")
+    console.log(localStorage)
+    console.log(this.props)
     return (
       <form onSubmit={this.handleReservationForm}>
         <h1>{formName}</h1>
@@ -127,3 +119,9 @@ class ReservationForm extends Component {
 }
 
 export default ReservationForm;
+
+
+
+
+
+
