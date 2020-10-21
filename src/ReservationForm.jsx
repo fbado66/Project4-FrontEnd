@@ -10,11 +10,60 @@ class ReservationForm extends Component {
     guest_count: '',
   }
 
+
+
+  // ----- handle Reservation Form  -----------------------
+
+ handleReservationForm = (ReservationPojo) => {
+   ReservationPojo.preventDefault()
+
+
+  console.log("Reservation form has been submitted")
+
+  fetch("http://localhost:3000/reservations", {
+    method: "POST",
+    headers: {
+      "Content-Type": "Application/json"
+    },
+    body: JSON.stringify({
+      user_id: ReservationPojo.user_id,
+      listing_id: ReservationPojo.listing_id,
+      check_in_date: ReservationPojo.check_in_date, 
+      check_out_date: ReservationPojo.check_out_date,
+      guest_count: ReservationPojo.guest_count
+    })
+  })
+    .then(res => res.json())
+    .then((response) => {
+      if(response.error){
+        console.error(response.error)
+      } else {
+
+        this.setState({
+          reservations: response.ReservationPojo,
+        })
+        this.props.history.push("/profile")
+      }
+    })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
   
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.props.handleSubmit(this.state)
-  }
+  // handleReservation = (e) => {
+  //   e.preventDefault()
+  //   this.props.handleReservation(this.state)
+  // }
 
   handleChange = (e) => {
     let {name, value} = e.target
@@ -27,10 +76,10 @@ class ReservationForm extends Component {
     let {formName} = this.props
     let {user_id, listing_id, check_in_date, check_out_date, guest_count} = this.state
 
-    console.log(this.state)
+    console.log(this.props.listing_id)
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleReservationForm}>
         <h1>{formName}</h1>
 
         <label htmlFor="first_name">user_id</label>

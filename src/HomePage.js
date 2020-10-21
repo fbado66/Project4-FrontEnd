@@ -32,11 +32,21 @@ class HomePage extends Component {
                         <p>Settle in somewhere new. Discover stays to live, work, or just relax</p>
                     </div>
                 </div>
+
+                <div className = 'filler-home'>
+                    <div className ='filler-header'>Online Experiences: Field Trips</div>
+                    <p className= 'filler-text'>Due to Covid-19 Our team at DuckBnb has paused Field Trips <br/>
+                    We will keep you inform on any upcoming changes</p>
+                    <div className = 'filler-images'>
+                        <div className ='filler-1'>
+                            <img className = 'filler-mainImg' src = 'https://a0.muscache.com/im/pictures/4e1d29d2-5148-444d-945d-c278121675a3.jpg?im_w=1200' />
+                            <p>Decode the science of 2020 with Bill Nye</p>
+                        </div>
+                    </div>
+
+                </div>
                 <div className = 'category-homepage'>
-                    {/* <CategoryList 
-                    taco = {this.props.taco}
-                    categories = {this.state.categories} 
-                    />      */}
+                    
                 </div>
     
             </div>

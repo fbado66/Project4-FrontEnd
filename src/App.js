@@ -23,8 +23,6 @@ class App extends Component {
     categories: [],
     reservations: [],
     reviews: []
-
-
 }
  
 
@@ -107,17 +105,16 @@ renderForm = (routerProps) => {
     return <LogInForm
       formName="Login Form"
       handleSubmit={this.handleLoginSubmit}
-    />
+          />
   } else if (routerProps.location.pathname === "/register") {
     return <RegisterForm
       formName="Register Form"
       handleSubmit={this.handleRegisterSubmit}
-    />
+          />
   }
 }
 
 renderProfile = (routerProps) => {
-  // return <Redirect/> in render of <Route/>
   if(this.state.id){
     return <ProfileContainer 
       username={this.state.username} 
@@ -156,37 +153,27 @@ componentDidMount(){
 
 
   renderSpecificListing = (routerProps) => {
-    console.log(routerProps)
-    
+    let listingCat = routerProps.match.params.id
     let listingUrl = routerProps.match.params.listing_id 
-            console.log(parseInt(listingUrl))
-
-    let foundListing = this.state.categories.map((listingPOJO) => {
-          listingPOJO.listings.map((singleListing) => {
-                console.log(singleListing.id)
-
-          let result = singleListing.id === parseInt(listingUrl)
-          console.log(result)
-
-          return result 
-
-          })
+      let foundCategory = this.state.categories.find((categoryPojo) => {
+          return categoryPojo.id === parseInt(listingCat)     
     })
-    
-    // console.log(foundListing)
-      
-    if (foundListing) {
-      return <SingularListing 
+      if (foundCategory) {
+      let foundListing = foundCategory.listings.find((listingPojo) => {
+        return listingPojo.id === parseInt(listingUrl)
+      })
+        if (foundListing) { 
+        return <SingularListing 
         listingPojo = {foundListing}
-        />
+              />
+        }
       } else {
         return <NotFound />
       }
   }
- 
+
 
   render() {
-
 
     let arrayOfLinks = this.state.categories.map((categoryPojo) => {
       return (
@@ -206,22 +193,18 @@ componentDidMount(){
   return (
     <div className="App">    
       <SearchBar /> 
-      {/* <Header /> */}
-
         <main>
           <Header />
-        
-          <Switch>
-            <Route path="/login" render={ this.renderForm } />
-            <Route path="/register" render={ this.renderForm } />
-            <Route path="/profile" render={ this.renderProfile } />
+            <Switch>
+              <Route path="/login" render={ this.renderForm } />
+              <Route path="/register" render={ this.renderForm } />
+              <Route path="/profile" render={ this.renderProfile } />
 
-            <Route path="/" exact component = {HomePage} />
-            <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
-            <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
-
-            <Route component = {NotFound} />
-          </Switch>
+              <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
+              <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
+              <Route path="/" exact component = {HomePage } />
+              <Route component = {NotFound} />
+            </Switch>
         </main>
 
         <aside>
@@ -235,5 +218,4 @@ componentDidMount(){
   }
 }
 
-let magicalComponent = withRouter(App)
-export default magicalComponent
+export default withRouter(App)
