@@ -1,12 +1,17 @@
 import React from 'react'
+import { withRouter} from 'react-router-dom'
+import ReservationForm from '../ReservationForm'
 
-const SingularListings = () => {
-    console.log('Hello from SingularListing')
+
+const SingularListing = (props) => {
+    console.log(props)
     return (
         <div>
+            <ReservationForm 
+            listing = {props.listing} />
         <p>Hello from Singular Listings</p>
         </div>
     )
 }
 
-export default SingularListings
+export default withRouter(SingularListing)

@@ -2,13 +2,14 @@ import React, {Component } from 'react';
 import './App.css';
 import SearchBar from './SearchBar';
 import HomePage from './HomePage'
-import NavBar from './NavBar'
+// import NavBar from './NavBar'
 import Header from "./Header"
 import LogInForm from './LogInForm'
 import RegisterForm from './RegisterForm'
 import ProfileContainer from './ProfileContainer'
 
 import ListingCnt from './ListingComponents/ListingCnt'
+import SingularListing from "./ListingComponents/SingularListing"
 import NotFound from './NotFound'
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
@@ -22,6 +23,7 @@ class App extends Component {
     categories: [],
     reservations: [],
     reviews: []
+
 
 }
  
@@ -129,8 +131,6 @@ renderProfile = (routerProps) => {
 
 }
 
-
-
 componentDidMount(){
     fetch("http://localhost:3000/categories")
       .then(res => res.json())
@@ -154,7 +154,39 @@ componentDidMount(){
     }
   }
 
+
+  renderSpecificListing = (routerProps) => {
+    console.log(routerProps)
+    
+    let listingUrl = routerProps.match.params.listing_id 
+            console.log(parseInt(listingUrl))
+
+    let foundListing = this.state.categories.map((listingPOJO) => {
+          listingPOJO.listings.map((singleListing) => {
+                console.log(singleListing.id)
+
+          let result = singleListing.id === parseInt(listingUrl)
+          console.log(result)
+
+          return result 
+
+          })
+    })
+    
+    // console.log(foundListing)
+      
+    if (foundListing) {
+      return <SingularListing 
+        listingPojo = {foundListing}
+        />
+      } else {
+        return <NotFound />
+      }
+  }
+ 
+
   render() {
+
 
     let arrayOfLinks = this.state.categories.map((categoryPojo) => {
       return (
@@ -169,21 +201,25 @@ componentDidMount(){
           </Link>
       )
   })
-  console.log(this.state)
+
+
   return (
     <div className="App">    
       <SearchBar /> 
-      <Header />
+      {/* <Header /> */}
 
         <main>
-          <NavBar />
+          <Header />
+        
           <Switch>
             <Route path="/login" render={ this.renderForm } />
             <Route path="/register" render={ this.renderForm } />
             <Route path="/profile" render={ this.renderProfile } />
 
             <Route path="/" exact component = {HomePage} />
-            <Route path="/categories/:id" render = {this.renderSpecificCategory} />
+            <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
+            <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
+
             <Route component = {NotFound} />
           </Switch>
         </main>
