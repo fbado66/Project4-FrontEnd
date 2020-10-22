@@ -79,7 +79,7 @@ code {
 
 .filler-home {
   background: #000000;
-  height: 800px;
+  height: auto
 }
 
 .filler-header {
@@ -95,6 +95,28 @@ code {
   margin-left: 1%;
 }
 
+.filler-image {
+  width: 80%; 
+}
+
+/* Overwrite bootstrap */
+/* .row {
+  margin-right: 0!important;
+  margin-left: 0!important
+} */
+.filler-card {
+  width: 400px;
+  border: 1px solid white;
+}
+
+.filler-card-avatar {
+  width: 400px;
+  border: 1px solid white;
+  padding-left: 2%;
+}
+.avatar-image {
+  height: 400px;
+}
 .filler-mainImg {
   width: 30%;
   position: absolute;
