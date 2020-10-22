@@ -1,5 +1,7 @@
 import React from 'react'; 
 import ListingPerCategory from './ListingPerCategory'
+import CardDeck from 'react-bootstrap/CardDeck';
+
 
 export default class extends React.Component {
     
@@ -16,9 +18,11 @@ export default class extends React.Component {
         })
 
         return (
-            <article className = 'render-all-listings'>
+            
+                <CardDeck>
                 {arrayOfListings}
-            </article>
+                </CardDeck>
+            
         )
     }
 }
