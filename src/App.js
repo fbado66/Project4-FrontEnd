@@ -13,6 +13,7 @@ import Footer from './ListingComponents/Footer'
 import NotFound from './NotFound'
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
+import ReservationForm from './ReservationForm';
 
 class App extends Component {
 
@@ -123,20 +124,22 @@ helpHandleResponse = (resp) => {
 renderForm = (routerProps) => {
   if(this.state.token){
     return <button onClick={this.handleLogOut}>Log Out</button>
-
   }
-
   if(routerProps.location.pathname === "/login"){
     return <LogInForm
       formName="Login Form"
       handleSubmit={this.handleLoginSubmit}
           />
+    
   } else if (routerProps.location.pathname === "/register") {
     return <RegisterForm
       formName="Register Form"
       handleSubmit={this.handleRegisterSubmit}
           />
-  }
+  } 
+  // else if (routerProps.location.pathname === "/categories/:id/listings/:listing_id"){
+  //   return <ReservationForm />
+  // }
 }
 
 renderProfile = (routerProps) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReservationForm from '../ReservationForm'
-import Carousel from 'react-bootstrap/Carousel'
+import ReviewForm from '../ReviewForm'
 
 const SingularListing = (props) => {
     let {token, catch_phrase, title, description, details, host_info, image_1_url, image_2_url, image_3_url, image_4_url, image_5_url, reviews, price} = props.listingPojo
@@ -8,10 +8,17 @@ const SingularListing = (props) => {
     console.log(props.token)
 
     let tokenCheck = () => {
-        if (token) {
-        return token ? <ReservationForm /> : null
+        if (props.token) {
+            return ( <div>
+                        <ReservationForm listing = {props.listingPojo} token = {props.token} /> 
+                        <ReviewForm listing = {props.listingPojo} token = {props.token} />
+                    </div> ) 
+        } else {
+            return ( <button> <div>Make a reservation</div></button> )
+        }
     }
-    }
+
+
     return (
         <div>
             
@@ -27,7 +34,6 @@ const SingularListing = (props) => {
 
 
         
-
 
 
 

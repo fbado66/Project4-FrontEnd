@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 class ReviewForm extends Component {
 
   state = {
-    
-    listing_id: "",
+    listing_id: this.props.listing.id,
     nickname: "",
     content: "",
   }
@@ -38,13 +37,11 @@ class ReviewForm extends Component {
       } else {
 
         this.setState({
-          reservations: response,
+          reviews: response,
           user_id: "",
           listing_id: "",
-          check_in_date: "",
-          check_out_date: "",
-          guest_count: ""
-
+          nickname: "",
+          content: ""
         })
         
       }
@@ -63,38 +60,29 @@ class ReviewForm extends Component {
 
   render() {
     let {formName} = this.props
-    let { check_in_date, check_out_date, guest_count} = this.state
+    let { nickname, content} = this.state
 
-    console.log("RESERVATION")
+    console.log("REVIEW")
     console.log(localStorage)
     console.log(this.props)
     return (
-      <form onSubmit={this.handleReservationForm}>
+      <form onSubmit={this.handleReviewForm}>
         <h1>{formName}</h1>
 
-        <label htmlFor="email">check_in_date:</label>
+        <label htmlFor="email">nickname:</label>
         <input type="text" autoComplete="off" 
-          name="check_in_date" 
-          value={check_in_date} 
+          name="nickname" 
+          value={nickname} 
           onChange={this.handleChange}
           />
 
-        <label htmlFor="email">check_out_date:</label>
+        <label htmlFor="email">content:</label>
         <input type="text" autoComplete="off" 
-          name="check_out_date" 
-          value={check_out_date} 
+          name="content" 
+          value={content} 
           onChange={this.handleChange}
           />
-
-        <label htmlFor="phone">guest_count:</label>
-        <input type="text" autoComplete="off" 
-          name="guest_count" 
-          value={guest_count} 
-          onChange={this.handleChange}
-          />
-
     
-        
         <input type="submit" value="Submit"/>
       </form>
     );
