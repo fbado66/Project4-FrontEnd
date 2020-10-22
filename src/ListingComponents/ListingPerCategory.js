@@ -17,13 +17,12 @@ let handleClick = () => {
         return review
     })
 
-    // console.log(props.listing)
     return (
         <div className = 'card-listing'>
 
 
 
-    <Card onClick = {handleClick} >
+    {/* <Card onClick = {handleClick} >
         <Card.Img variant="top" src={image_1_url} />
             <Card.Body>
                 <Card.Title>{catch_phrase}</Card.Title>
@@ -32,7 +31,7 @@ let handleClick = () => {
             <Card.Footer>
                 <small className="text-muted">Last updated 3 mins ago</small>
             </Card.Footer>
-    </Card>
+    </Card> */}
   
   
     
@@ -58,21 +57,18 @@ let handleClick = () => {
 
 
 
-
-
-
-            {/* <img 
+            <div className ='card-listings'>
+                 <img 
             onClick = {handleClick} src={image_1_url} />
-            <h1>{catch_phrase}</h1>
-            <p>{title}</p> */}
-            {/* <img src={image_2_url} />
-            <img src={image_3_url} />
-            <img src={image_4_url} />
-            <img src={image_5_url} /> */}
-            {/* <p>{details}</p>
-            <p>${price} .00</p>
-            <p>Description: {description}</p>
-            <p>Host Info: {host_info}</p> */}
+                        <div className="card__info">
+                            <h2>{catch_phrase}</h2>
+                            <h4> {description} </h4>
+                            <h3> {price} </h3>
+                        </div>
+            </div>
+
+
+           
         </div>
     )
 };

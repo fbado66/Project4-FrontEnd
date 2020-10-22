@@ -123,6 +123,7 @@ helpHandleResponse = (resp) => {
 renderForm = (routerProps) => {
   if(this.state.token){
     return <button onClick={this.handleLogOut}>Log Out</button>
+
   }
 
   if(routerProps.location.pathname === "/login"){
@@ -183,6 +184,7 @@ renderProfile = (routerProps) => {
         return <SingularListing 
         listingPojo = {foundListing}
         token = {this.state.token}
+          
               />
         }
       } else {
