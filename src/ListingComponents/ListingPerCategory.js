@@ -1,7 +1,7 @@
 import React, {Component } from 'react';
 import { withRouter} from 'react-router-dom'
 import ReservationForm from '../ReservationForm';
-import Card from 'react-bootstrap/Card'
+// import Card from 'react-bootstrap/Card'
 
 
 
@@ -19,42 +19,6 @@ let handleClick = () => {
 
     return (
         <div className = 'card-listing'>
-
-
-
-    {/* <Card onClick = {handleClick} >
-        <Card.Img variant="top" src={image_1_url} />
-            <Card.Body>
-                <Card.Title>{catch_phrase}</Card.Title>
-                <Card.Text>{title}</Card.Text>
-            </Card.Body>
-            <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-            </Card.Footer>
-    </Card> */}
-  
-  
-    
-  
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             <div className ='card-listings'>

@@ -1,11 +1,12 @@
 import React, {Component } from 'react';
 import './App.css';
-import SearchBar from './SearchBar';
+import SearchBar from "./SearchBar.jsx";
 import HomePage from './HomePage'
 import Header from "./Header"
 import LogInForm from './LogInForm'
 import RegisterForm from './RegisterForm'
 import ProfileContainer from './ProfileContainer'
+import ListingSearched from "./ListingSearched"
 
 import ListingCnt from './ListingComponents/ListingCnt'
 import SingularListing from "./ListingComponents/SingularListing"
@@ -14,6 +15,8 @@ import NotFound from './NotFound'
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import ReservationForm from './ReservationForm';
+import SearchListingContainer from './SearchListingContainer';
+import SearchResult from './SearchResult';
 
 class App extends Component {
 
@@ -22,8 +25,10 @@ class App extends Component {
     username: "",
     categories: [],
     reservations: [],
+    searchListing: '',
     reviews: [],
-    token: ""
+    token: "",
+    taco: []
 }
 
  // ----SETTING STATE FOR CATEGORIES AS WELL AS CHECKING ON USER IF LOGGED IN -----
@@ -105,6 +110,43 @@ handleRegisterSubmit = (userInfo) => {
 }
 
 
+
+
+//---- search bar function -------
+
+renderSearchResult =() => { 
+
+  let {searchListing} = this.state
+  let allListings = [];
+    this.state.categories.forEach(categoriesObjs => {
+      allListings = [...allListings, ...categoriesObjs.listings]
+      let some = allListings.filter((listing) => {
+        console.log(searchListing.toLowerCase())
+        console.log(listing.title.toLowerCase())
+        // this.props.history.push(`/search/${listing.id}`)
+        return  listing.title.toLowerCase().includes(searchListing.toLowerCase())
+      })
+          this.setState ({
+           taco: some 
+          })
+
+    })
+
+  // console.log(allListings)
+}
+
+ // filter function for the search bar
+ changeBasedOnInput = (listingsearch) =>{
+  this.setState({ 
+  searchListing: listingsearch
+  })
+}
+
+
+
+
+
+
 helpHandleResponse = (resp) => {
   if(resp.error){
     console.error(resp.error)
@@ -137,9 +179,7 @@ renderForm = (routerProps) => {
       handleSubmit={this.handleRegisterSubmit}
           />
   } 
-  // else if (routerProps.location.pathname === "/categories/:id/listings/:listing_id"){
-  //   return <ReservationForm />
-  // }
+
 }
 
 renderProfile = (routerProps) => {
@@ -157,7 +197,6 @@ renderProfile = (routerProps) => {
   }
 
 }
-
 
 
   renderSpecificCategory = (routerProps) => {
@@ -195,9 +234,11 @@ renderProfile = (routerProps) => {
       }
   }
 
-
+    
   
   render() {
+
+    this.renderSearchResult()
 
     let arrayOfLinks = this.state.categories.map((categoryPojo) => {
       return (
@@ -215,16 +256,25 @@ renderProfile = (routerProps) => {
 
     
 
-
   return (
     <div className="App">    
-      <SearchBar /> 
+    {/* <SearchResult /> */}
+      {/* <SearchBar />  */}
+      
         <main>
-          <Header />
+          <Header 
+          
+          searchListing = {this.state.searchListing}
+          changeBasedOnInput = {this.changeBasedOnInput} 
+          />
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
               <Route path="/profile" render={ this.renderProfile } />
+
+              <Route path="/search/:id" render={this.renderSearchResult} />
+
+             
 
               <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
               <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
@@ -232,6 +282,7 @@ renderProfile = (routerProps) => {
               
               <Route component = {NotFound} />
             </Switch>
+            
         
         </main>
 

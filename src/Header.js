@@ -5,7 +5,24 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {NavLink} from 'react-router-dom'
 
 
-function Header() {
+function Header(props) {
+    console.log(props)
+
+    let handleInput = (evt) => {
+        // evt.preventDefault()
+        
+        props.changeBasedOnInput(evt.target.value)
+      }
+
+      let handleSubmit = (evt) => {
+
+        evt.preventDefault()
+
+        this.props.history.push("/search")
+        
+        // props.history.push(`/search/${props.listing.id}`)
+      }
+
     return (
         <div className = 'header-holder'>
             <NavLink to="/">
@@ -17,10 +34,17 @@ function Header() {
                 </div>
             </NavLink>
 
-            <div className='headerSearch'>
-                <input type='text' ></input>
+            <form className='headerSearch' 
+            onSubmit = {handleSubmit} >
+                <input 
+                    type='text'
+                    placeholder={"Search by State"}
+                    value={props.searchListing}
+                    onChange={handleInput } />
+                    <input  type="submit" value="Submit"/>
+                    
                 <SearchIcon />
-            </div>
+            </form>
 
             <div className = 'userHolder'>
                 <NavLink to="/login">

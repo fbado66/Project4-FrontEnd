@@ -4,8 +4,13 @@ import ReviewForm from '../ReviewForm'
 
 const SingularListing = (props) => {
     let {token, catch_phrase, title, description, details, host_info, image_1_url, image_2_url, image_3_url, image_4_url, image_5_url, reviews, price} = props.listingPojo
-    console.log('SINGULAR LISTING')
-    console.log(props.token)
+    let reviewArray = reviews.map(reviewPojo => {
+        return <li>
+            {reviewPojo.content}
+                </li>
+    })
+
+  
 
     let tokenCheck = () => {
         if (props.token) {
@@ -22,7 +27,9 @@ const SingularListing = (props) => {
     return (
         <div>
             
-        
+            <h1>{catch_phrase}</h1> 
+            <br/>
+            <h2>{title}</h2>
 
         <div className="grid-container">
         <div className="Image-1"><img src ={image_1_url} alt=''/></div>
@@ -35,20 +42,7 @@ const SingularListing = (props) => {
 
         
 
-
-
-
-
-
-
-
-
-
-
-
-
-           <h1>{catch_phrase}</h1> 
-            <h2>{title}</h2>
+           
             <h6>{description}</h6>
             <p>{details}</p>
             <p>{host_info}</p>
@@ -67,6 +61,13 @@ const SingularListing = (props) => {
 
             
         {tokenCheck()}
+
+        <div> 
+            <h3>Reviews </h3>
+
+            {reviewArray}
+            <p></p>
+        </div>
             
             
          </div> 
