@@ -79,7 +79,7 @@ code {
 
 .filler-home {
   background: #000000;
-  height: auto
+  height: 1400px;
 }
 
 .filler-header {
@@ -95,28 +95,42 @@ code {
   margin-left: 1%;
 }
 
-.filler-image {
+/* .filler-image {
   width: 80%; 
-}
-
-/* Overwrite bootstrap */
-/* .row {
-  margin-right: 0!important;
-  margin-left: 0!important
 } */
+
+/* ----------grid system in home page -------------  */
+.grid-container2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "avatar filler-1 filler-2 ."
+    "avatar filler-3 filler-3 ."
+    ". . . .";
+}
+.avatar { grid-area: avatar; }
+.filler-1 { grid-area: filler-1; }
+.filler-2 { grid-area: filler-2; }
+.filler-3 { grid-area: filler-3; }
 .filler-card {
-  width: 400px;
+  width: 50%;
   border: 1px solid white;
 }
 
-.filler-card-avatar {
+
+
+
+
+/* .filler-card-avatar {
   width: 400px;
   border: 1px solid white;
   padding-left: 2%;
 }
 .avatar-image {
   height: 400px;
-}
+} */
 .filler-mainImg {
   width: 30%;
   position: absolute;
@@ -128,6 +142,12 @@ code {
   left: 40px;
   position: absolute;
   bottom: -800px
+}
+
+  /* -----closing statement on the home page  ------ */
+
+.statement-closer {
+  columns: 2;
 }
  /* ---------------Category Component ----------------  */
 
@@ -195,3 +215,24 @@ code {
     margin-top: 8px;
     margin-bottom: 8px;
   }
+
+
+
+  /* -----------Singular Listing Images ----------------- */
+
+  .grid-container {
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "Image-1 image-2 image-3 ."
+      "Image-1 image-4 image-5 ."
+      ". . . .";
+  }
+  .Image-1 { grid-area: Image-1; }
+  .image-2 { grid-area: image-2; }
+  .image-3 { grid-area: image-3; }
+  .image-4 { grid-area: image-4; }
+  .image-5 { grid-area: image-5; }

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class ReservationForm extends Component {
 
   state = {
-    user_id: "",
+    
     listing_id: this.props.listing.id,
     check_in_date: "",
     check_out_date: "",
@@ -65,7 +65,7 @@ class ReservationForm extends Component {
 
   render() {
     let {formName} = this.props
-    let {user_id, listing_id, check_in_date, check_out_date, guest_count} = this.state
+    let { check_in_date, check_out_date, guest_count} = this.state
 
     console.log("RESERVATION")
     console.log(localStorage)
@@ -73,20 +73,6 @@ class ReservationForm extends Component {
     return (
       <form onSubmit={this.handleReservationForm}>
         <h1>{formName}</h1>
-
-        <label htmlFor="first_name">user_id</label>
-        <input type="text" autoComplete="off" 
-          name="user_id" 
-          value={user_id} 
-          onChange={this.handleChange}
-          />
-
-        <label htmlFor="last_name">listing_id:</label>
-        <input type="text" autoComplete="off" 
-          name="listing_id" 
-          value={listing_id} 
-          onChange={this.handleChange}
-          />
 
         <label htmlFor="email">check_in_date:</label>
         <input type="text" autoComplete="off" 

@@ -9,6 +9,7 @@ import ProfileContainer from './ProfileContainer'
 
 import ListingCnt from './ListingComponents/ListingCnt'
 import SingularListing from "./ListingComponents/SingularListing"
+import Footer from './ListingComponents/Footer'
 import NotFound from './NotFound'
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
@@ -190,6 +191,7 @@ renderProfile = (routerProps) => {
   }
 
 
+  
   render() {
 
     let arrayOfLinks = this.state.categories.map((categoryPojo) => {
@@ -206,6 +208,8 @@ renderProfile = (routerProps) => {
       )
   })
 
+    
+
 
   return (
     <div className="App">    
@@ -219,16 +223,20 @@ renderProfile = (routerProps) => {
 
               <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
               <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
-              <Route path="/" exact component = {HomePage } />
+              <Route path="/" exact component = {HomePage} />
+              
               <Route component = {NotFound} />
             </Switch>
+        
         </main>
 
         <aside>
           <ul className = 'categoryCard-holder'>
             {arrayOfLinks}
           </ul>
-        </aside>   
+        </aside>  
+
+      <Footer /> 
 
     </div>
     );

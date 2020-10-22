@@ -8,10 +8,16 @@ const SingularListing = (props) => {
     return (
         <div>
 
+        <div class="grid-container">
+        <div class="Image-1"><img src ={image_1_url} alt=''/></div>
+        <div class="image-2"><img src ={image_2_url} alt=''/></div>
+        <div class="image-3"><img src ={image_3_url} alt=''/></div>
+        <div class="image-4"><img src ={image_4_url} alt=''/></div>
+        <div class="image-5"><img src ={image_5_url} alt=''/></div>
+        </div>
 
 
-
-        <Carousel>
+        {/* <Carousel>
             <Carousel.Item>
                     <img src = {image_1_url} alt =''/>
                 <Carousel.Caption>
@@ -60,7 +66,7 @@ const SingularListing = (props) => {
        
        
 
-        </Carousel>
+        </Carousel> */}
 
 
 
