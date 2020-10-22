@@ -206,7 +206,7 @@ renderProfile = (routerProps) => {
           to = {`/categories/${categoryPojo.id}`}>
               {<div className = 'render-categroyCard'>
                   <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
-                  <h1 className ='categoryCard-text'>{categoryPojo.title}</h1>
+                  <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
                   <p className ='categoryCard-text' >{categoryPojo.content}</p>
               </div>}
           </Link>

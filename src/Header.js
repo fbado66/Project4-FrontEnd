@@ -9,9 +9,12 @@ function Header() {
     return (
         <div className = 'header-holder'>
             <NavLink to="/">
-                <img className = 'logo'
-                src = "https://www.thoughtfulcode.com/wp-content/uploads/2019/01/rubber-duck-debugging-and-psychology-sunglassed-rubber-duck-1272x848.jpg"
-                alt = ''/>
+                <div className = 'logo-contatiner'>
+                    <img className = 'logo'
+                        src = "https://ih1.redbubble.net/image.443602210.1540/flat,750x1000,075,f.u1.jpg"
+                        alt = ''/>
+                    <h5 className = 'duckbnb'>DuckBnB</h5>
+                </div>
             </NavLink>
 
             <div className='headerSearch'>

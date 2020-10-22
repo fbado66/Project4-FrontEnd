@@ -19,6 +19,17 @@ code {
   justify-content: space-between;
 }
 
+.logo-contatiner {
+  display: flex;
+}
+
+.duckbnb {
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  margin-top: 20%;
+  color: #ff385c;
+  font-weight: 500;
+}
+
 .logo {
   height: 7vw;
   padding: 2%;
@@ -42,7 +53,7 @@ code {
 .headerSearch > input {
   border: none;
   width: 20vw;
-  padding: 10px;
+  /* padding: 10px; */
   outline-width: 0
 }
 
@@ -56,7 +67,7 @@ code {
 /* -------------------Home Page Component-----------------------------  */
 
 .home-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url("https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url("https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg");
   height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
@@ -66,7 +77,9 @@ code {
 
 .hero-text {
   text-align: justify;
-  text-shadow: .5px .5px white;  
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: .8px .8px white;  
   position: absolute;
   top: 50%;
   left: 10%;
@@ -90,17 +103,69 @@ code {
   text-align: start;
   color: #fff;
   padding: 2%;
+  margin-left: 2%;
+  text-shadow: 1px 1px white;
 }
 
 .filler-text {
   text-align: start;
   color: #fff;
-  margin-left: 1%;
+  margin-left: 4%;
+  padding: 4% 0
 }
 
-/* .filler-image {
-  width: 80%; 
-} */
+.filler-1 >.filler-card {
+  width: 380px;
+  margin: 0 5%;
+  background: #222222;
+  border-radius: 25px;
+
+}
+
+.filler-1 > .filler-card > .filler-image {
+  width: 380px;
+  border-radius: 22px 22px 0 0;
+
+}
+
+.filler-2 >.filler-card {
+  width: 380px;
+  margin: 0 10%;
+  background: #222222;
+  border-radius: 25px;
+}
+
+.filler-2 > .filler-card > .filler-image {
+  width: 380px;
+  height: 390px;
+  border-radius: 22px 22px 0 0;
+}
+
+.filler-3 >.filler-card-wide {
+  width: 680px;
+  margin: -1% 10%;
+  background: #222222;
+  border-radius: 25px;
+}
+
+.filler-3 > .filler-card-wide > .filler-image {
+  width: 680px;
+  height: 390px;
+  border-radius: 22px 22px 0 0;
+}
+
+.blm {
+  font-weight: bolder;
+  font-size: 30px;
+  text-align:left;
+  padding: 10% 15%;
+}
+
+.statement-content {
+  padding: 10% 15%;
+  text-align: left;
+  font-size: 18px;
+}
 
 /* ----------grid system in home page -------------  */
 .grid-container2 {
@@ -117,23 +182,32 @@ code {
 .filler-1 { grid-area: filler-1; }
 .filler-2 { grid-area: filler-2; }
 .filler-3 { grid-area: filler-3; }
-.filler-card {
+/* .filler-card {
   width: 50%;
   border: 1px solid white;
-}
+} */
 
 
 
 
 
-/* .filler-card-avatar {
-  width: 400px;
-  border: 1px solid white;
-  padding-left: 2%;
+.filler-card-avatar {
+  background: #222222;
+  border-radius: 25px;
+} 
+
+.filler-text-avatar {
+  text-align: start;
+  color: #fff;
+  margin-left: 4%;
+  padding: 4%
+
 }
 .avatar-image {
-  height: 400px;
-} */
+  height: 900px;
+  width: fit-content;
+  border-radius: 22px 22px 0 0;
+} 
 .filler-mainImg {
   width: 30%;
   position: absolute;
@@ -156,17 +230,28 @@ code {
 
 .render-categroyCard {
   align-items: center;
-  padding-left: 4%;
-  padding-right: 4%;
+  width: 90%;
+  box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+  border-radius: 20px;
+  height: 400px;
+
 }
 
 .categoryCard-holder {
   display: flex;
 }
 
+.category-image {
+  width: 100%;
+  border-radius: 22px 22px 0 0;
+}
 
 .categoryCard-text {
-  text-decoration: none;
+  color: #222222;
+  margin: 2% 
+}
+a {
+  text-decoration: none!important
 }
 
 .singular-category {

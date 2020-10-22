@@ -51,7 +51,7 @@ class HomePage extends Component {
                         <div className="avatar">
                             <div className = 'filler-card-avatar'>
                                 <img className = 'avatar-image'src ="https://media.moddb.com/cache/images/groups/1/19/18020/thumb_620x2000/Katara_Sokka_Aang_Momo_Appa.jpg" />
-                                <p className= 'filler-text'>Join the Code Bender in a new journey as they coming close to graduation date</p>
+                                <p className= 'filler-text-avatar'>Join the Code Bender in a new journey as they coming close to graduation date</p>
                             </div>
                         </div>
 
