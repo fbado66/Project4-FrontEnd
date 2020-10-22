@@ -28,7 +28,7 @@ class App extends Component {
     searchListing: '',
     reviews: [],
     token: "",
-    taco: []
+    // taco: []
 }
 
  // ----SETTING STATE FOR CATEGORIES AS WELL AS CHECKING ON USER IF LOGGED IN -----
@@ -120,15 +120,15 @@ renderSearchResult =() => {
   let allListings = [];
     this.state.categories.forEach(categoriesObjs => {
       allListings = [...allListings, ...categoriesObjs.listings]
-      let some = allListings.filter((listing) => {
-        console.log(searchListing.toLowerCase())
-        console.log(listing.title.toLowerCase())
+      allListings.filter((listing) => {
+        // console.log(searchListing.toLowerCase())
+        // console.log(listing.title.toLowerCase())
         // this.props.history.push(`/search/${listing.id}`)
         return  listing.title.toLowerCase().includes(searchListing.toLowerCase())
       })
-          this.setState ({
-           taco: some 
-          })
+          // this.setState ({
+          //  taco: some 
+          // })
 
     })
 
@@ -141,7 +141,6 @@ renderSearchResult =() => {
   searchListing: listingsearch
   })
 }
-
 
 
 
@@ -264,7 +263,7 @@ renderProfile = (routerProps) => {
         <main>
           <Header 
           
-          searchListing = {this.state.searchListing}
+          // searchListing = {this.state.searchListing}
           changeBasedOnInput = {this.changeBasedOnInput} 
           />
             <Switch>
