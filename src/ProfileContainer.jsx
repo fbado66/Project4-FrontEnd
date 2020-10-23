@@ -5,6 +5,9 @@ import ReservationForm from './ReservationForm';
 import UserReservationContainer from './UserReservationContainer'
 import UserReviewContainer from './UserReviewContainer'
 import ReviewsForListings from './ReviewForListings'
+import StarIcon from '@material-ui/icons/Star';
+import BookmarksIcon from '@material-ui/icons/Bookmarks';
+
 
 
 
@@ -14,7 +17,7 @@ class ProfileContainer extends Component {
 
   render() {
   
-    let {id, location, username, reservations, token, reviews} = this.props
+    let {id, username, reservations, token, reviews} = this.props
           
     let allReservations = reservations.map((reservationPojo) => {
       return <UserReservationContainer
@@ -48,14 +51,21 @@ class ProfileContainer extends Component {
         <strong>Joined in 2020</strong>
         
         <h3 className='about'>About </h3>
-
-        
-         <div>
-           <p>reviews</p>
+          <div className='reservation-box'>
+            < BookmarksIcon />
+            <strong>reservations</strong>
          </div>
-
-         {allReviews}
-
+         <div className ='allReservations'>
+           {allReservations}
+        </div>
+        <div className='reservationLikesContainer'>
+          <div className='review-box'>
+            <StarIcon />
+            <strong>reviews</strong>
+          </div>
+          <div className = 'allReviews' >{allReviews}</div>
+            
+      </div>
          
          
          

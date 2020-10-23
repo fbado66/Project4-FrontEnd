@@ -107,7 +107,7 @@ const SingularListing = (props) => {
         {tokenCheck()}
 
         <div> 
-            <h3>Reviews </h3>
+            <h3 className='reviewTitle'>Reviews </h3>
 
             <ReviewCard />
             {/* <ReviewOnListing /> */}

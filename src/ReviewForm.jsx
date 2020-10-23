@@ -94,7 +94,7 @@ class ReviewForm extends Component {
           onChange={this.handleChange}
           />
     
-        <input type="submit" value="Submit"/>
+        <input className= 'createReview' type="submit" value="Share with us"/>
       </form>
 
       <ReviewOnListing 

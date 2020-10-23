@@ -1,4 +1,6 @@
 import React from 'react';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 
 class UserReviewContainer extends React.Component {
@@ -38,16 +40,16 @@ class UserReviewContainer extends React.Component {
         let {nickname, content, likes} = this.props.review
 
         return (
-            <div>
-                <p>nickname: {nickname}</p>
-                <p>Content: {content}</p> 
-                <button onClick={ this.handleOrderClick } >
-                    Likes: {likes}
+            <div className = 'all-reviews-profile' >
+                <strong>nickname:  {nickname}</strong>
+                <p className = 'profile-content'>{content}</p> 
+                <button className='likes-button' onClick={ this.handleOrderClick } >
+                    {likes} <ThumbUpIcon />
                 </button>
                 
-                <button className="delButton" onClick={this.handleDelete}>
-                    x
-                </button>
+                <div className="delButton" onClick={this.handleDelete}>
+                    <DeleteForeverIcon />
+                </div>
             </div>
         )
 

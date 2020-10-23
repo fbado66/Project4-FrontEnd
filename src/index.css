@@ -598,6 +598,19 @@ label+input {
   margin-top: -750px;
 }
 
+.createReview {
+  background: #ff365c;
+  color: white;
+  text-shadow: 1px 1px white;
+  padding: 1% 4%;
+  width: 200px;
+  border-radius: 16px;
+  float: right;
+  margin-right: 32%;
+   margin-top: 2%
+  /* margin-top: -750px; */
+}
+
 .makeReservation > a {
   color: white!important;
   font-size: 20px
@@ -621,4 +634,58 @@ label+input {
 
 .about { 
   padding: 3%;
+}
+
+.review-box {
+  display: flex;
+  margin: 6% 20% 0 48%;
+  padding-bottom: 5%
+}
+
+.all-reviews-profile {
+  display: inline-block;
+  padding: 3% 5%;
+  margin: 2% 0%;
+  box-shadow: 0px 6px 18px -12px rgba(0, 0, 0, 0.75);
+  width: 400px;
+  border-radius: 20px;
+  grid-column: 2;
+}
+
+.profile-content {
+  font-style: italic;
+  padding-top: 2%;
+}
+
+.likes-button {
+  background: #ff365c;
+  padding:  2% 5%;
+  border-radius: 10px;
+}
+
+.reservation-box {
+  margin: 7% 0% 5% 2%;  
+}
+
+.all-reservation-profile {
+  display: inline-block;
+  margin-left: 70px!important; 
+  padding: 1%;
+  margin: 2% 0%;
+
+  box-shadow: 0px 6px 18px -12px rgba(0, 0, 0, 0.75);
+  width: 400px;
+  border-radius: 20px;
+  margin-left: -20px;
+  grid-column: 2;
+}
+
+
+.reviewTitle {
+  padding: 5% 0 2% 0;
+}
+
+
+.reservationLikesContainer {
+  grid-column: 2;
 }
