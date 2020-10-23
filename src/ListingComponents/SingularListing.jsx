@@ -45,6 +45,8 @@ const SingularListing = (props) => {
 
 
         <div className='utilities'>
+            <p className = 'listing-price'>Price: ${price}.00 / night</p>
+
             <div className='section'>
             <HouseIcon/> <div className='sub-section'>
                         <p className = 'sub-header'>Entire home</p>
@@ -70,26 +72,18 @@ const SingularListing = (props) => {
                         </div>
             </div>
             
-
-
         </div>
            
-            <h6>{description}</h6>
-            <p>{details}</p>
-            <p>{host_info}</p>
-            {/* <img src = {image_1_url} />
-            <img src = {image_2_url} />
-            <img src = {image_3_url} />
-            <img src = {image_4_url} />
-            <img src = {image_5_url} /> */}
-            <p>$ {price}.00 / night</p>
+        <p className = 'listing-description'>{description}</p>
+        <div className = 'space'>The Space -- </div>
+        <p className = 'listing-details'>{details}</p>
+        <div className = 'space2'> Contact the Host </div>
+        <p className = 'listing-details'>{host_info}</p>
+
+
 
             
-                {/* <ReservationForm
-                listing = {props.listingPojo}
-                token = {props.token} 
-            />  */}
-
+               
             
         {tokenCheck()}
 

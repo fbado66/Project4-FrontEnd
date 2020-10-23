@@ -14,6 +14,10 @@ class ReservationForm extends Component {
 
   // ----- handle Reservation Form  -----------------------
 
+  handleAlert = () => {
+    alert('Thank you for reservation')
+  }
+
  handleReservationForm = (evt) => {
    evt.preventDefault()
 
@@ -67,38 +71,44 @@ class ReservationForm extends Component {
     let {formName} = this.props
     let { check_in_date, check_out_date, guest_count} = this.state
 
-    console.log("RESERVATION")
-    console.log(localStorage)
-    console.log(this.props)
+    // console.log("RESERVATION")
+    // console.log(localStorage)
+    // console.log(this.props)
+
+
     return (
-      <form onSubmit={this.handleReservationForm}>
-        <h1>{formName}</h1>
+      <div className = 'reservationForm'>
+        <div className="ui segment">
+          <form onSubmit={this.handleReservationForm}>
+            <div className="inline fields">
+              <h1>{formName}</h1>
 
-        <label htmlFor="email">check_in_date:</label>
-        <input type="text" autoComplete="off" 
-          name="check_in_date" 
-          value={check_in_date} 
-          onChange={this.handleChange}
-          />
+              <label className='check-in' htmlFor="check_in">CHECK-IN</label>
+                <input type="date" autoComplete="off" 
+                        name="check_in_date" 
+                        value={check_in_date} 
+                        onChange={this.handleChange}
+                />
 
-        <label htmlFor="email">check_out_date:</label>
-        <input type="text" autoComplete="off" 
-          name="check_out_date" 
-          value={check_out_date} 
-          onChange={this.handleChange}
-          />
+              <label className='check-out' htmlFor="check_out">CHECK-OUT</label>
+                <input type="date" autoComplete="off" 
+                        name="check_out_date" 
+                        value={check_out_date} 
+                        onChange={this.handleChange}
+                />
 
-        <label htmlFor="phone">guest_count:</label>
-        <input type="text" autoComplete="off" 
-          name="guest_count" 
-          value={guest_count} 
-          onChange={this.handleChange}
-          />
+              <label className='guest-count' htmlFor="guest_count">GUESTS</label>
+                <input type="number" autoComplete="off" 
+                        name="guest_count" 
+                        value={guest_count} 
+                        onChange={this.handleChange}
+                />
 
-    
-        
-        <input type="submit" value="Submit"/>
-      </form>
+              <input className='submit' onClick ={this.handleAlert} type="submit" value="Check availabilty"/>
+            </div>
+          </form>
+        </div>
+      </div>
     );
   }
 
