@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReviewOnListing from "./ReviewOnListing"
 
 class ReviewForm extends Component {
 
@@ -6,18 +7,14 @@ class ReviewForm extends Component {
     listing_id: this.props.listing.id,
     nickname: "",
     content: "",
+    likes: 1
   }
-
-
 
   // ----- handle Review Form  -----------------------
 
  handleReviewForm = (evt) => {
    evt.preventDefault()
-
-
-  console.log("Review form has been submitted")
-
+  
   fetch("http://localhost:3000/reviews", {
     method: "POST",
     headers: {
@@ -28,26 +25,30 @@ class ReviewForm extends Component {
       listing_id: this.state.listing_id,
       nickname: this.state.nickname, 
       content: this.state.content,
+      likes: this.state.likes
     })
   })
     .then(res => res.json())
     .then((response) => {
-      if(response.error){
-        console.error(response.error)
-      } else {
+      this.props.addReviewsToState(response)
+      // if(response.error){
+      //   console.error(response.error)
+      // } else {
+      //   this.props.addReviewsToState(response)
 
-        this.setState({
-          reviews: response,
-          user_id: "",
-          listing_id: "",
-          nickname: "",
-          content: ""
-        })
+      //   // this.setState({
+      //   //   reviews: response,
+      //   //   user_id: "",
+      //   //   listing_id: "",
+      //   //   nickname: "",
+      //   //   content: ""
+      //   // })
         
-      }
+      // }
     })
-
-}
+    
+  
+  }
 
 
   handleChange = (e) => {
@@ -55,6 +56,7 @@ class ReviewForm extends Component {
     this.setState({
       [name]: value
     })
+    
   }
 
 
@@ -66,25 +68,40 @@ class ReviewForm extends Component {
     console.log(localStorage)
     console.log(this.props)
     return (
+      <div className = 'review-form'>
       <form onSubmit={this.handleReviewForm}>
         <h1>{formName}</h1>
+        <h4>Create a Review</h4>
 
-        <label htmlFor="email">nickname:</label>
+        <label htmlFor="nickname">nickname:</label>
         <input type="text" autoComplete="off" 
           name="nickname" 
-          value={nickname} 
+          value={this.props.nickname} 
           onChange={this.handleChange}
           />
 
-        <label htmlFor="email">content:</label>
+        <label htmlFor="content">content:</label>
         <input type="text" autoComplete="off" 
           name="content" 
-          value={content} 
+          value={this.props.content} 
+          onChange={this.handleChange}
+          />
+
+        <label className = 'likes-form' htmlFor="likes">likes:</label>
+        <input type="number" autoComplete="off" 
+          name="likes" 
+          value={this.props.likes} 
           onChange={this.handleChange}
           />
     
         <input type="submit" value="Submit"/>
       </form>
+
+      <ReviewOnListing 
+      reviews = {this.addReviewsToState} 
+      reviewUpdate = {this.updateReviewFromState}
+      />
+      </div>
     );
   }
 

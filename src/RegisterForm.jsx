@@ -61,7 +61,7 @@ class RegisterForm extends Component {
           />
 
         <label htmlFor="phone">Phone:</label>
-        <input type="text" autoComplete="off" 
+        <input type="number" autoComplete="off" 
           name="phone" 
           value={phone} 
           onChange={this.handleChange}

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Redirect, withRouter} from 'react-router-dom'
+
 
 class ReservationForm extends Component {
 
@@ -8,6 +10,7 @@ class ReservationForm extends Component {
     check_in_date: "",
     check_out_date: "",
     guest_count: "",
+    reservations: "",
   }
 
 
@@ -15,7 +18,11 @@ class ReservationForm extends Component {
   // ----- handle Reservation Form  -----------------------
 
   handleAlert = () => {
-    alert('Thank you for reservation')
+    // alert('Thank you for Reservation')
+  
+    this.props.history.push("/profile")
+
+    
   }
 
  handleReservationForm = (evt) => {
@@ -104,7 +111,7 @@ class ReservationForm extends Component {
                         onChange={this.handleChange}
                 />
 
-              <input className='submit' onClick ={this.handleAlert} type="submit" value="Check availabilty"/>
+              <input className='submit'  type="submit" value="Check availabilty"/>
             </div>
           </form>
         </div>
@@ -114,7 +121,7 @@ class ReservationForm extends Component {
 
 }
 
-export default ReservationForm;
+export default withRouter(ReservationForm);
 
 
 

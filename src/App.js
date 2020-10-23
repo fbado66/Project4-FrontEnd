@@ -19,6 +19,7 @@ import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import ReservationForm from './ReservationForm';
 import SearchListingContainer from './SearchListingContainer';
 import SearchResult from './SearchResult';
+import ReviewForm from './ReviewForm';
 
 class App extends Component {
 
@@ -30,7 +31,9 @@ class App extends Component {
     searchListing: '',
     reviews: [],
     token: "",
-    // taco: []
+    location: "",
+    
+  
 }
 
  // ----SETTING STATE FOR CATEGORIES AS WELL AS CHECKING ON USER IF LOGGED IN -----
@@ -104,6 +107,7 @@ handleRegisterSubmit = (userInfo) => {
       email: userInfo.email,
       phone: userInfo.phone,
       location: userInfo.location
+      
     })
   })
   .then(res => res.json())
@@ -155,10 +159,15 @@ helpHandleResponse = (resp) => {
     localStorage.token = resp.token
     this.setState({
       id: resp.user.id,
+      first_name: resp.first_name,
+      last_name: resp.last_name,
+      email: resp.email,
       username: resp.user.username,
       reservations: resp.user.reservations,
       reviews: resp.user.reviews,
-      token: resp.token
+      token: resp.token,
+      location: resp.location,
+      phone: resp.phone
     })
     this.props.history.push("/profile")
   }
@@ -191,6 +200,9 @@ renderProfile = (routerProps) => {
                 reservations={this.state.reservations} 
                 reviews={this.state.reviews}
                 id={this.state.id}
+                deleteReviewsFromState = {this.deleteReviewsFromState}
+                updateReviewFromState = {this.updateReviewFromState}
+                
               />
            </div> 
   } else {
@@ -213,6 +225,42 @@ renderProfile = (routerProps) => {
   }
 
 
+  addReviewsToState = (newlyCreatedReview) => {
+    let copyOfReviews = [...this.state.reviews, newlyCreatedReview]
+    this.setState({
+      reviews: copyOfReviews
+    })
+  }
+
+  updateReviewFromState = (updatedObj) => {
+    let copyOfReviews = this.state.reviews.map((review) => {
+      if(review.id === updatedObj.id){
+        return updatedObj
+      } else {
+        return review
+      }
+    })
+
+    this.setState({
+      reviews: copyOfReviews
+    })
+
+  }
+
+
+  deleteReviewsFromState = (deletedID) => {
+    let copyOfReviews = this.state.reviews.filter(reviewObj => {
+      return reviewObj.id !== deletedID
+    })
+    this.setState({
+      reviews: copyOfReviews
+    })
+  }
+
+
+  
+
+
   renderSpecificListing = (routerProps) => {
     let listingCat = routerProps.match.params.id
     let listingUrl = routerProps.match.params.listing_id 
@@ -227,8 +275,12 @@ renderProfile = (routerProps) => {
         return <SingularListing 
         listingPojo = {foundListing}
         token = {this.state.token}
-          
-              />
+        review = {this.state.reviews}
+        addReviewsToState = {this.addReviewsToState}
+        updateReviewFromState = {this.updateReviewFromState}
+
+        // deleteReviewsFromState = {this.deleteReviewsFromState}
+        />
         }
       } else {
         return <NotFound />
@@ -255,24 +307,26 @@ renderProfile = (routerProps) => {
       />
     )
 }
+
+
+
+addReservationsToState = (newlyCreatedReservation) => {
+  let copyOfReservations = [...this.state.reservations, newlyCreatedReservation]
+  this.setState({
+    reservations: copyOfReservations
+  })
+}
+
+
+
+
+
   
   render() {
 
     this.renderSearchResult()
 
-  //   let arrayOfLinks = this.state.categories.map((categoryPojo) => {
-  //     return (
-  //         <Link
-  //         key = {categoryPojo.id}
-  //         to = {`/categories/${categoryPojo.id}`}>
-  //             {<div className = 'render-categroyCard'>
-  //                 <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
-  //                 <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
-  //                 <p className ='categoryCard-text' >{categoryPojo.content}</p>
-  //             </div>}
-  //         </Link>
-  //     )
-  // })
+
 
 
     
@@ -284,10 +338,9 @@ renderProfile = (routerProps) => {
       
         <main>
           <Header 
-          
-          // searchListing = {this.state.searchListing}
-          changeBasedOnInput = {this.changeBasedOnInput} 
+            changeBasedOnInput = {this.changeBasedOnInput} 
           />
+          
               {/* <CategoryMainPage cats = {arrayOfLinks} /> */}
 
             <Switch>
@@ -312,9 +365,7 @@ renderProfile = (routerProps) => {
         </main>
 
         <aside>
-          {/* <ul className = 'categoryCard-holder'>
-            {arrayOfLinks}
-          </ul> */}
+          
         </aside>  
 
       <Footer /> 

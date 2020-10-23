@@ -5,25 +5,44 @@ import HouseIcon from '@material-ui/icons/House';
 import StarIcon from '@material-ui/icons/Star';
 import DialpadIcon from '@material-ui/icons/Dialpad';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import {Link} from 'react-router-dom'
+import ReviewOnListing from "../ReviewOnListing"
+import ReviewForListings from '../ReviewForListings';
+import ReviewCard from '../ReviewCard'
+
+
+
 
 const SingularListing = (props) => {
-    let {token, catch_phrase, title, description, details, host_info, image_1_url, image_2_url, image_3_url, image_4_url, image_5_url, reviews, price} = props.listingPojo
-    let reviewArray = reviews.map(reviewPojo => {
-        return <li>
-            {reviewPojo.content}
-                </li>
+
+    console.log(props)
+    let {token, catch_phrase, title, description, details, host_info, image_1_url, image_2_url, image_3_url, image_4_url, image_5_url, price} = props.listingPojo
+    let reviewArray = props.review.map(reviewPojo => {
+        return <div className = 'holder-review-result'>
+                    <p className='nickname-review'>Nickname: {reviewPojo.nickname}</p>
+                    <div className='content-likes'>
+                        <p className='content-review'>{reviewPojo.content}</p>
+                        <p className='likes-review'>likes: {reviewPojo.likes}</p>
+                    </div>
+                </div>
     })
 
-  
-
+ 
     let tokenCheck = () => {
         if (props.token) {
             return ( <div>
+                        <ReviewForListings />
                         <ReservationForm listing = {props.listingPojo} token = {props.token} /> 
-                        <ReviewForm listing = {props.listingPojo} token = {props.token} />
+                        <ReviewForm 
+                            listing ={props.listingPojo} 
+                            token ={props.token} 
+                            addReviewsToState ={props.addReviewsToState} 
+                            updateReviewFromState = {props.updateReviewFromState}
+                        />
                     </div> ) 
         } else {
-            return ( <button> <div>Make a reservation</div></button> )
+            return (   <div className = 'makeReservation' ><Link to="/login" >Make a Reservation</Link> </div> )
+
         }
     }
 
@@ -90,8 +109,12 @@ const SingularListing = (props) => {
         <div> 
             <h3>Reviews </h3>
 
+            <ReviewCard />
+            {/* <ReviewOnListing /> */}
+
             {reviewArray}
-            <p></p>
+            {/* <ReviewForListings /> */}
+            
         </div>
             
             

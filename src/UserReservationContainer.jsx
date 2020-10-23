@@ -1,6 +1,9 @@
 import React from 'react';
 
 const UserReservationContainer = (props) => {
+    console.log('USER RESERVATION ')
+    console.log(props.reservation)
+    
 
     let {check_in_date, check_out_date, guest_count} = props.reservation
     

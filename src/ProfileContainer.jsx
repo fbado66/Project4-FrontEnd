@@ -1,14 +1,20 @@
+import { RecordVoiceOverTwoTone } from '@material-ui/icons';
 import React, { Component } from 'react';
+import SingularListing from './ListingComponents/SingularListing';
 import ReservationForm from './ReservationForm';
 import UserReservationContainer from './UserReservationContainer'
+import UserReviewContainer from './UserReviewContainer'
+import ReviewsForListings from './ReviewForListings'
+
+
+
 class ProfileContainer extends Component {
 
   
 
   render() {
-    console.log('I AM FROM PROFILE ')
-    console.log(this.props)
-    let {id, username, reservations, token} = this.props
+  
+    let {id, location, username, reservations, token, reviews} = this.props
           
     let allReservations = reservations.map((reservationPojo) => {
       return <UserReservationContainer
@@ -18,13 +24,37 @@ class ProfileContainer extends Component {
             />
     })
 
-    console.log('PROFILE COMPONENT')
-    console.log(this.props)
+    let allReviews = reviews.map((reviewPojo) => {
+      return <div><UserReviewContainer
+      deleteReviewsFromState = {this.props.deleteReviewsFromState}
+      updateReviewFromState = {this.props.updateReviewFromState}
+              key ={reviewPojo.id}
+              review = {reviewPojo}
+            />
+            <ReviewsForListings 
+            review = {reviewPojo}
+            />
+
+            </div>    
+                   
+    })
+
+
+ 
     return (      
       <div>
-        <p>Hello world from the profile container</p>
-        <h2>{username}&apos;s Profile</h2>
-         {allReservations}
+        
+        <h2>Hi, I'm {username}</h2>
+        <strong>Joined in 2020</strong>
+        
+        <h3 className='about'>About </h3>
+
+        
+         <div>
+           <p>reviews</p>
+         </div>
+
+         {allReviews}
 
          
          
