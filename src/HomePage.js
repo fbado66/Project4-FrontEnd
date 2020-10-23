@@ -4,6 +4,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StatementFooter from './StatementFooter'
 // import CategoryList from './CategoryList'
+import Category from "./Category"
+import {Link} from 'react-router-dom'
+
 
 
 class HomePage extends Component {
@@ -23,6 +26,19 @@ class HomePage extends Component {
     }
 
     render () {
+        
+        let categoryArray = this.state.categories.map(categoryPojo => {
+            return (<Link
+                key = {categoryPojo.id}
+                to = {`/categories/${categoryPojo.id}`}>
+                    {<div className = 'render-categroyCard'>
+                        <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
+                        <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
+                        <p className ='categoryCard-text' >{categoryPojo.content}</p>
+                    </div>}
+                </Link>
+            )
+        })
 
         return (
             <div>
@@ -33,8 +49,10 @@ class HomePage extends Component {
                         <p>Settle in somewhere new. Discover stays to live, work, or just relax</p>
                     </div>
                 </div>
-
-
+                
+                <ul className = 'categoryCard-holder'>
+                    {categoryArray}
+                </ul> 
 
 
                 <div className = 'filler-home'>
@@ -81,12 +99,10 @@ class HomePage extends Component {
 
                 <StatementFooter />
 
-                
             </div>
         )
     }
     
-
 }
 
 export default HomePage

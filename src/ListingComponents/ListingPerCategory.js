@@ -27,7 +27,9 @@ let handleClick = () => {
                         <div className="card__info">
                             <h2>{catch_phrase}</h2>
                             <h4> {description} </h4>
-                            <h3> {price} </h3>
+                            <h3> ${price}.00 / night </h3>
+                            <p>Host: {host_info}</p>
+
                         </div>
             </div>
 

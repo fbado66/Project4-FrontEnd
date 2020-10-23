@@ -3,7 +3,8 @@ import React, {Component } from 'react';
 class Category extends Component {
 
     render () {
-      let  {title, content, image_url} = this.props.category
+        console.log(this)
+      let  {title, content, image_url} = this.props
 
         return (
             <div className ='singular-category'>

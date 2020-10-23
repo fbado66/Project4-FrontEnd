@@ -11,7 +11,9 @@ import ListingSearched from "./ListingSearched"
 import ListingCnt from './ListingComponents/ListingCnt'
 import SingularListing from "./ListingComponents/SingularListing"
 import Footer from './ListingComponents/Footer'
+import CategoryMainPage from './CategoryMainPage'
 import NotFound from './NotFound'
+import Category from "./Category"
 
 import { Route, Switch, Link, withRouter, Redirect} from 'react-router-dom'
 import ReservationForm from './ReservationForm';
@@ -233,25 +235,45 @@ renderProfile = (routerProps) => {
       }
   }
 
-    
+  allcats = () => {
+    let arrayOfLinks = this.state.categories.map((categoryPojo) => {
+      return (
+        <Link
+        key = {categoryPojo.id}
+        to = {`/categories/${categoryPojo.id}`}>
+            {<div className = 'render-categroyCard'>
+                <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
+                <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
+                <p className ='categoryCard-text' >{categoryPojo.content}</p>
+            </div>}
+        </Link>
+      )
+    })
+    return (
+      <HomePage
+      cats = {arrayOfLinks}
+      />
+    )
+}
   
   render() {
 
     this.renderSearchResult()
 
-    let arrayOfLinks = this.state.categories.map((categoryPojo) => {
-      return (
-          <Link
-          key = {categoryPojo.id}
-          to = {`/categories/${categoryPojo.id}`}>
-              {<div className = 'render-categroyCard'>
-                  <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
-                  <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
-                  <p className ='categoryCard-text' >{categoryPojo.content}</p>
-              </div>}
-          </Link>
-      )
-  })
+  //   let arrayOfLinks = this.state.categories.map((categoryPojo) => {
+  //     return (
+  //         <Link
+  //         key = {categoryPojo.id}
+  //         to = {`/categories/${categoryPojo.id}`}>
+  //             {<div className = 'render-categroyCard'>
+  //                 <img className = 'category-image' src ={categoryPojo.image_url} alt=''/>
+  //                 <h3 className ='categoryCard-text'>{categoryPojo.title}</h3>
+  //                 <p className ='categoryCard-text' >{categoryPojo.content}</p>
+  //             </div>}
+  //         </Link>
+  //     )
+  // })
+
 
     
 
@@ -266,6 +288,8 @@ renderProfile = (routerProps) => {
           // searchListing = {this.state.searchListing}
           changeBasedOnInput = {this.changeBasedOnInput} 
           />
+              {/* <CategoryMainPage cats = {arrayOfLinks} /> */}
+
             <Switch>
               <Route path="/login" render={ this.renderForm } />
               <Route path="/register" render={ this.renderForm } />
@@ -277,7 +301,9 @@ renderProfile = (routerProps) => {
 
               <Route path="/categories/:id" exact render = {this.renderSpecificCategory} />
               <Route path="/categories/:id/listings/:listing_id" exact render = {this.renderSpecificListing} />
-              <Route path="/" exact component = {HomePage} />
+              {/* <Route path="/" exact component = {HomePage} /> */}
+              <Route path="/" exact render = {this.allcats} />
+
               
               <Route component = {NotFound} />
             </Switch>
@@ -286,9 +312,9 @@ renderProfile = (routerProps) => {
         </main>
 
         <aside>
-          <ul className = 'categoryCard-holder'>
+          {/* <ul className = 'categoryCard-holder'>
             {arrayOfLinks}
-          </ul>
+          </ul> */}
         </aside>  
 
       <Footer /> 

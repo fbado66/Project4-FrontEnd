@@ -8,9 +8,7 @@ import {NavLink} from 'react-router-dom'
 function Header(props) {
     console.log(props)
 
-    let handleInput = (evt) => {
-        // evt.preventDefault()
-        
+    let handleInput = (evt) => { 
         props.changeBasedOnInput(evt.target.value)
       }
 
@@ -38,10 +36,9 @@ function Header(props) {
             onSubmit = {handleSubmit} >
                 <input 
                     type='text'
-                    placeholder={"Search by State"}
+                    placeholder={"Feature currently under construction"}
                     value={props.searchListing}
                     onChange={handleInput } />
-                    <input  type="submit" value="Submit"/>
                     
                 <SearchIcon />
             </form>
