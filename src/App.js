@@ -175,7 +175,7 @@ helpHandleResponse = (resp) => {
 
 renderForm = (routerProps) => {
   if(this.state.token){
-    return <button onClick={this.handleLogOut}>Log Out</button>
+    return <button className='logout' onClick={this.handleLogOut}>We hope to catch with you soon</button>
   }
   if(routerProps.location.pathname === "/login"){
     return <LogInForm

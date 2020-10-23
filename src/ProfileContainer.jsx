@@ -47,7 +47,7 @@ class ProfileContainer extends Component {
     return (      
       <div>
         
-        <h2>Hi, I'm {username}</h2>
+        <h2 className = 'nameUser'>Hi, I'm {username}</h2>
         <strong>Joined in 2020</strong>
         
         <h3 className='about'>About </h3>

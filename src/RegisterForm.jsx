@@ -29,6 +29,7 @@ class RegisterForm extends Component {
     let {username, password, first_name, last_name, email, phone, location} = this.state
 
     return (
+      <div className='registerForm'>
       <form onSubmit={this.handleSubmit}>
         <h1>{formName}</h1>
 
@@ -80,8 +81,9 @@ class RegisterForm extends Component {
           value={password} 
           onChange={this.handleChange}
         />
-        <input type="submit" value="Submit"/>
+        <input className= 'registerFormSubmit' type="submit" value="Join the fun"/>
       </form>
+      </div>
     );
   }
 
